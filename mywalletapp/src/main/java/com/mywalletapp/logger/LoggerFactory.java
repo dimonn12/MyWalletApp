@@ -1,5 +1,6 @@
 package com.mywalletapp.logger;
 
-public class LoggerFactory {
+public interface LoggerFactory {
 
+  public Logger getInstance(String className);
 }

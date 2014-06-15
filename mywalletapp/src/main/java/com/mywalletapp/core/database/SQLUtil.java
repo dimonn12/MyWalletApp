@@ -1,6 +1,11 @@
 package com.mywalletapp.core.database;
 
+import com.mywalletapp.logger.Logger;
+import com.mywalletapp.logger.LoggerFactoryUtil;
+
 public final class SQLUtil {
+
+  private static final Logger LOG = LoggerFactoryUtil.getLogger(com.mywalletapp.core.database.SQLUtil.class);
 
   private SQLUtil() throws DatabaseException {
     throw new DatabaseException("Attemption to create com.mywalletapp.core.database.SQLUtil.class");
@@ -8,7 +13,6 @@ public final class SQLUtil {
 
   public static long generateId(String entityName, Context context) {
     return 0;
-
   }
 
 }
