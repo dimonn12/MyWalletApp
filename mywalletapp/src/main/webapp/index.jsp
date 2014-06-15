@@ -1,9 +1,13 @@
-<html>
-<body>
+<%@ page contentType="text/html;charset=UTF-8" language="java"
+	isELIgnored="false"%>
 
-<div style="width: 400px; text-align: center">
-    <h2>Hello, My Wallet App</h2>
-</div>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Refresh" content="0;URL=./home" />
+</head>
+<body>
 
 </body>
 </html>
