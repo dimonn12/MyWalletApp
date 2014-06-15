@@ -12,18 +12,27 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:/properties/database.properties" />
+		<property name="location" value="classpath:/config/database.properties" />
 	</bean>
 
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		destroy-method="close">
 		<property name="url" value="${database.url}" />
 		<property name="driverClassName" value="${database.driver}" />
 		<property name="username" value="${database.user}" />
 		<property name="password" value="${database.password}" />
-		<property name="removeAbandoned" value="true" />
+		<property name="poolPreparedStatements" value="true"/>
 		<property name="initialSize" value="15" />
-		<property name="maxActive" value="10" />
+	</bean>
+
+	<bean id="dataSourceWrapper" class="com.mywalletapp.core.database.DatabaseSourceWrapper"
+		destroy-method="close">
+		<constructor-arg name="source" ref="dataSource" />
+	</bean>
+
+	<bean id="userAccountHome" class="com.mywalletapp.core.user.UserAccountHome"
+		factory-method="getInstance" init-method="init">
+		<constructor-arg name="source" ref="dataSourceWrapper" />
 	</bean>
 
 	<aop:config>

@@ -2,7 +2,7 @@ package com.mywalletapp.core.entity;
 
 public interface ObjectDao<T extends ObjectEntity> {
 
-  T findById(Id id);
+  T findById(long id);
 
   boolean save(T entity);
 

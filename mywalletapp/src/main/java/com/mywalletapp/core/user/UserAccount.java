@@ -1,7 +1,7 @@
 package com.mywalletapp.core.user;
 
+import com.mywalletapp.core.entity.Id;
 import com.mywalletapp.core.entity.ObjectEntity;
-import com.mywalletapp.core.entity.ObjectHome;
 
 public class UserAccount extends ObjectEntity {
 
@@ -9,14 +9,14 @@ public class UserAccount extends ObjectEntity {
    * 
    */
   private static final long serialVersionUID = 4112176087557741793L;
-
+  private UserAccountHome home;
   private String login;
   private String password;
   private String firstName;
   private String lastName;
   private String salt;
 
-  public UserAccount(long id, ObjectHome<?> home) {
+  public UserAccount(Id id, UserAccountHome home) {
     super(id, home);
   }
 

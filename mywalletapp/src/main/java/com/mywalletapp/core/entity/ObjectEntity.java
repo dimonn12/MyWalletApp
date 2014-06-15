@@ -20,9 +20,9 @@ public abstract class ObjectEntity implements Serializable {
   protected OffsetDateTime created;
   protected OffsetDateTime modified;
 
-  public ObjectEntity(long id, ObjectHome<?> home) {
+  public ObjectEntity(Id id, ObjectHome<?> home) {
     this.home = home;
-    this.id = Id.generateId(id, home);
+    this.id = id;
   }
 
   public Id getId() {
