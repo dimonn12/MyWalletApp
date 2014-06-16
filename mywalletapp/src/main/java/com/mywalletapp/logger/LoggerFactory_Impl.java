@@ -30,4 +30,5 @@ public class LoggerFactory_Impl implements Serializable, com.mywalletapp.logger.
       return oldInstance == null ? newInstance : oldInstance;
     }
   }
+
 }

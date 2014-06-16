@@ -5,17 +5,17 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 
-<c:set var="root" value="" scope="request"/>
-<c:set var="img" value="${root}/resources/images" scope="request"/>
-<c:set var="css" value="${root}/resources/css" scope="request"/>
-<c:set var="js" value="${root}/resources/jscript" scope="request"/>
+<c:set var="root" value="" scope="request" />
+<c:set var="img" value="${root}/resources/images" scope="request" />
+<c:set var="css" value="${root}/resources/css" scope="request" />
+<c:set var="js" value="${root}/resources/jscript" scope="request" />
 <!DOCTYPE html>
 
 <html>
 
 <head>
-<link rel="stylesheet" href="<c:url value="${css}/pure-css.css" />"/>
-<link rel="stylesheet" href="<c:url value="${css}/pure-layout.css" />"/>
+<link rel="stylesheet" href="<c:url value="${css}/pure-css.css" />" />
+<link rel="stylesheet" href="<c:url value="${css}/pure-layout.css" />" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><s:insertAttribute name="title" ignore="true" /></title>
@@ -25,11 +25,12 @@
 	<div class="header">
 		<div
 			class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
-			<a class="pure-menu-heading" href="">Your Site</a>
+			<a class="pure-menu-heading" href="">My Wallet Application</a>
 
 			<ul>
 				<li class="pure-menu-selected"><a href="#">Home</a></li>
 				<li><a href="#">Tour</a></li>
+				<li><a href="#">Sign In</a></li>
 				<li><a href="#">Sign Up</a></li>
 			</ul>
 		</div>
@@ -37,12 +38,10 @@
 
 	<div class="splash-container">
 		<div class="splash">
-			<h1 class="splash-head">Big Bold Text</h1>
-			<p class="splash-subhead">Lorem ipsum dolor sit amet, consectetur
-				adipisicing elit.</p>
+			<h1 class="splash-head">New application for wallet control</h1>
+			<p class="splash-subhead">{submessage}</p>
 			<p>
-				<a href="http://purecss.io" class="pure-button pure-button-primary">Get
-					Started</a>
+				<a href="#" class="pure-button pure-button-primary">Get Started</a>
 			</p>
 		</div>
 	</div>
@@ -58,34 +57,30 @@
 					<h3 class="content-subhead">
 						<i class="fa fa-rocket"></i> Get Started Quickly
 					</h3>
-					<p>Phasellus eget enim eu lectus faucibus vestibulum.
-						Suspendisse sodales pellentesque elementum.</p>
+					<p>{getstartedmessage}.</p>
 				</div>
 				<div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
 					<h3 class="content-subhead">
-						<i class="fa fa-mobile"></i> Responsive Layouts
+						<i class="fa fa-mobile"></i> Easy to use
 					</h3>
-					<p>Phasellus eget enim eu lectus faucibus vestibulum.
-						Suspendisse sodales pellentesque elementum.</p>
+					<p>{easytouse}.</p>
 				</div>
 				<div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
 					<h3 class="content-subhead">
-						<i class="fa fa-th-large"></i> Modular
+						<i class="fa fa-th-large"></i> You can use it for free
 					</h3>
-					<p>Phasellus eget enim eu lectus faucibus vestibulum.
-						Suspendisse sodales pellentesque elementum.</p>
+					<p>{freemodel}</p>
 				</div>
 				<div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
 					<h3 class="content-subhead">
-						<i class="fa fa-check-square-o"></i> Plays Nice
+						<i class="fa fa-check-square-o"></i> Nice views
 					</h3>
-					<p>Phasellus eget enim eu lectus faucibus vestibulum.
-						Suspendisse sodales pellentesque elementum.</p>
+					<p>{views}.</p>
 				</div>
 			</div>
 		</div>
 
-		<div class="ribbon l-box-lrg pure-g">
+<!-- 		<div class="ribbon l-box-lrg pure-g">
 			<div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
 				<img class="pure-img-responsive" alt="File Icons" width="300"
 					src="img/common/file-icons.png">
@@ -100,11 +95,10 @@
 					enim ad minim veniam, quis nostrud exercitation ullamco laboris
 					nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.</p>
 			</div>
-		</div>
+		</div> -->
 
 		<div class="content">
-			<h2 class="content-head is-center">Dolore magna aliqua. Uis aute
-				irure.</h2>
+			<h2 class="content-head is-center">You can start quickly after simple registration.</h2>
 
 			<div class="pure-g">
 				<div class="l-box-lrg pure-u-1 pure-u-md-2-5">
@@ -125,30 +119,20 @@
 
 				<div class="l-box-lrg pure-u-1 pure-u-md-3-5">
 					<h4>Contact Us</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-						sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-						nisi ut aliquip ex ea commodo consequat.</p>
+					<p>{contactinfo}</p>
 
 					<h4>More Information</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-						sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-					</p>
+					<p>{some additional information}</p>
 				</div>
 			</div>
 
 		</div>
 
-		<div class="footer l-box is-center">View the source of this
-			layout to learn more. Made with love by the YUI Team.</div>
+		<div class="footer l-box is-center">
+			Developerd by Dmitry Shanko <br />Minsk, Belarus. 2014
+		</div>
 
 	</div>
-
-
-
-
-
-
 
 </body>
 </html>
