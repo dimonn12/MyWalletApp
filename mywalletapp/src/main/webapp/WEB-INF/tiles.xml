@@ -4,11 +4,11 @@
 "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
-	<definition name="base.definition" template="/WEB-INF/tiles/layout.jsp">
+	<definition name="base.definition" template="/WEB-INF/tiles/templates/layout.jsp">
 		<put-attribute name="title" value="" />
 	</definition>
 
-	<definition name="defaultTemplate" template="/WEB-INF/template/template.jsp">
+<!-- 	<definition name="defaultTemplate" template="/WEB-INF/template/template.jsp">
 		<put-attribute name="header"
 			value="/WEB-INF/tiles/defaultHeader.jsp" />
 		<put-attribute name="navigation_bar"
@@ -18,7 +18,7 @@
 		<put-attribute name="footer"
 			value="/WEB-INF/template/defaultFooter.jsp" />
 	</definition>
-
+ -->
 	<definition name="home" extends="base.definition">
 		<put-attribute name="title" value="My Wallet" />
 	</definition>
