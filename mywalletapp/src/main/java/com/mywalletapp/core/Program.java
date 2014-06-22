@@ -15,7 +15,7 @@ public class Program {
   private final static Lock LOCK = new ReentrantLock();
   private final static Lock SECOND_LOCK = new ReentrantLock();
   private static Program INSTANCE;
-  private final Map<String, Object> args;
+  private final Map<String, String> args;
 
   private static final class PARAMS {
     public static final String IS_PRODUCTION = "IsProduction";
@@ -24,7 +24,7 @@ public class Program {
 
   }
 
-  private Program(Map<String, Object> args) {
+  private Program(Map<String, String> args) {
     LOCK.lock();
     try {
       if (null == INSTANCE) {
@@ -38,7 +38,7 @@ public class Program {
     this.args = args;
   }
 
-  public static Program getInstance(Map<String, Object> args) {
+  public static Program getInstance(Map<String, String> args) {
     LOCK.lock();
     try {
       if (null == INSTANCE) {
@@ -53,11 +53,9 @@ public class Program {
       }
     } catch (Throwable t) {
       LOG.error(t.getMessage());
-      Object isProduction = args.get(PARAMS.IS_PRODUCTION);
-      if (null != isProduction) {
-        if (!BooleanUtils.toBoolean(isProduction.toString())) {
-          throw t;
-        }
+
+      if (!BooleanUtils.toBoolean(args.get(PARAMS.IS_PRODUCTION))) {
+        throw t;
       }
       INSTANCE.init();
     } finally {
@@ -70,12 +68,16 @@ public class Program {
     this.init(args);
   }
 
-  private void init(Map<String, Object> args) {
+  private void init(Map<String, String> args) {
 
   }
 
-  public Object getStartupArgument(String argument) {
+  public String getStartupArgument(String argument) {
     return args.get(argument);
+  }
+
+  public boolean isProduction() {
+    return BooleanUtils.toBoolean(args.get(PARAMS.IS_PRODUCTION));
   }
 
   public void close() {

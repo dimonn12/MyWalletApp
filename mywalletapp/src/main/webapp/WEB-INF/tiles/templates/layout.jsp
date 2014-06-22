@@ -22,19 +22,7 @@
 </head>
 <body>
 
-	<div class="header">
-		<div
-			class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
-			<a class="pure-menu-heading" href="">My Wallet Application</a>
 
-			<ul>
-				<li class="pure-menu-selected"><a href="#">Home</a></li>
-				<li><a href="#">Tour</a></li>
-				<li><a href="#">Sign In</a></li>
-				<li><a href="#">Sign Up</a></li>
-			</ul>
-		</div>
-	</div>
 
 	<div class="splash-container">
 		<div class="splash">

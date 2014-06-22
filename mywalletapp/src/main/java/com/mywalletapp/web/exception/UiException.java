@@ -1,4 +1,4 @@
-package com.mywalletapp.web;
+package com.mywalletapp.web.exception;
 
 
 public class UiException extends Exception {

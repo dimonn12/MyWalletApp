@@ -1,22 +1,27 @@
 package com.mywalletapp.core.user;
 
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import com.mywalletapp.core.entity.Id;
 import com.mywalletapp.core.entity.ObjectEntity;
 
-public class UserAccount extends ObjectEntity {
+public class UserAccount extends ObjectEntity implements UserDetails {
 
   /**
    * 
    */
   private static final long serialVersionUID = 4112176087557741793L;
-  private UserAccountHome home;
+  private final Collection<UserGrantedAuthority> authorities = null;
   private String login;
   private String password;
   private String firstName;
   private String lastName;
   private String salt;
 
-  public UserAccount(Id id, UserAccountHome home) {
+  UserAccount(Id id, UserAccountHome home) {
     super(id, home);
   }
 
@@ -28,6 +33,7 @@ public class UserAccount extends ObjectEntity {
     this.login = login;
   }
 
+  @Override
   public String getPassword() {
     return password;
   }
@@ -121,6 +127,36 @@ public class UserAccount extends ObjectEntity {
     sb.append(",");
     sb.append(null != modified ? modified : "{null}");
     return sb.toString();
+  }
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return authorities;
+  }
+
+  @Override
+  public String getUsername() {
+    return this.getLogin();
+  }
+
+  @Override
+  public boolean isAccountNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isAccountNonLocked() {
+    return true;
+  }
+
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isEnabled() {
+    return true;
   }
 
 }

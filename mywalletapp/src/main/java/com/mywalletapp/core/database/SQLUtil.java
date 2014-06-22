@@ -1,5 +1,7 @@
 package com.mywalletapp.core.database;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import com.mywalletapp.logger.Logger;
 import com.mywalletapp.logger.LoggerFactoryUtil;
 
@@ -11,7 +13,7 @@ public final class SQLUtil {
     throw new DatabaseException("Attemption to create com.mywalletapp.core.database.SQLUtil.class");
   }
 
-  public static long generateId(String entityName, Context context) {
+  public static long generateId(String entityName, JdbcTemplate jdbcTemplate) {
     return 0;
   }
 

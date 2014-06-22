@@ -1,7 +1,7 @@
 package com.mywalletapp.core.entity;
 
 import java.io.Serializable;
-import java.time.OffsetDateTime;
+import java.time.ZonedDateTime;
 
 public abstract class ObjectEntity implements Serializable {
 
@@ -11,18 +11,20 @@ public abstract class ObjectEntity implements Serializable {
   private static final long serialVersionUID = -6208320898814400201L;
   public static final int STATE_TEMP = 0;
   public static final int STATE_NEW = 1;
-  public static final int STATE_TO_UPDATE = 2;
-  public static final int STATE_TO_DELETE = 3;
+  public static final int STATE_CONSISTENT = 2;
+  public static final int STATE_TO_UPDATE = 3;
+  public static final int STATE_TO_DELETE = 4;
   private final Id id;
   private final ObjectHome<?> home;
   private int state;
   protected boolean isDeleted;
-  protected OffsetDateTime created;
-  protected OffsetDateTime modified;
+  protected ZonedDateTime created;
+  protected ZonedDateTime modified;
 
   public ObjectEntity(Id id, ObjectHome<?> home) {
     this.home = home;
     this.id = id;
+    this.state = STATE_NEW;
   }
 
   public Id getId() {
@@ -37,19 +39,23 @@ public abstract class ObjectEntity implements Serializable {
     return state;
   }
 
-  public OffsetDateTime getCreated() {
+  public void changeState(int state) {
+    this.state = state;
+  }
+
+  public ZonedDateTime getCreated() {
     return created;
   }
 
-  public void setCreated(OffsetDateTime created) {
+  public void setCreated(ZonedDateTime created) {
     this.created = created;
   }
 
-  public OffsetDateTime getModified() {
+  public ZonedDateTime getModified() {
     return modified;
   }
 
-  public void setModified(OffsetDateTime modified) {
+  public void setModified(ZonedDateTime modified) {
     this.modified = modified;
   }
 

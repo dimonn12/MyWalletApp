@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security-3.2.xsd"
+	xmlns:beans="http://www.springframework.org/schema/beans">
+
+	<import resource="spring-config.xml" />
+
+	<security:http use-expressions="true" auto-config="true">
+
+		<security:intercept-url pattern="/login"
+			access="isAnonymous()" requires-channel="https" />
+		<security:intercept-url pattern="/home" access="isAnonymous()" />
+		<security:intercept-url pattern="/resources/**"
+			access="isAnonymous()" />
+		<security:intercept-url pattern="/user/**"
+			access="isAuthenticated()" requires-channel="https" />
+
+		<security:form-login login-processing-url="/j_spring_security_check"
+			login-page="/login" default-target-url="/home"
+			authentication-failure-url="/login" always-use-default-target="true"
+			authentication-failure-handler-ref="authenticationFailureHandler" />
+
+		<security:logout invalidate-session="true" logout-url="/logout"
+			logout-success-url="/home" />
+
+		<security:remember-me key="remember-me-key"
+			token-validity-seconds="86400" />
+
+		<security:session-management>
+			<security:concurrency-control
+				session-registry-alias="sessionRegistry" />
+		</security:session-management>
+
+	</security:http>
+
+	<security:global-method-security
+		pre-post-annotations="enabled" />
+
+	<bean id="usernamePasswordAuthenticationFilter"
+		class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+		<property name="authenticationManager" ref="authenticationManager" />
+	</bean>
+
+	<bean id="authenticationFailureHandler"
+		class="com.mywalletapp.web.core.UserNameAuthenticationFailureHandler">
+		<property name="defaultFailureUrl" value="/login?error=true" />
+		<property name="usernamePasswordAuthenticationFilter" ref="usernamePasswordAuthenticationFilter" />
+	</bean>
+
+	<bean id="accessDeniedHandler"
+		class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
+		<property name="errorPage" value="/dashboard" />
+	</bean>
+
+	<security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider
+			user-service-ref="userAccountService">
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+	<!-- <security:http use-expressions="true" auto-config="true"> <security:intercept-url 
+		pattern="/login" access="isAnonymous()" /> add https <security:intercept-url 
+		pattern="/**" access="isAuthenticated()" /> <security:form-login login-processing-url="/j_spring_security_check" 
+		login-page="/login" default-target-url="/home" always-use-default-target="true" 
+		authentication-failure-handler-ref="userNameAuthenticationFailureHandler" 
+		/> <security:logout invalidate-session="true" logout-url="/logout" logout-success-url="/spring_security_login" 
+		/> <security:access-denied-handler ref="accessDeniedHandler" /> <security:remember-me 
+		key="remember-me-key" token-validity-seconds="86400" /> <security:session-management> 
+		<security:concurrency-control session-registry-alias="sessionRegistry" /> 
+		</security:session-management> </security:http> <security:global-method-security 
+		pre-post-annotations="enabled" /> <bean id="usernamePasswordAuthenticationFilter" 
+		class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter"> 
+		<property name="authenticationManager" ref="authenticationManager" /> </bean> 
+		<bean id="userNameAuthenticationFailureHandler" class="by.academy.rms.service.users.login.UserNameAuthenticationFailureHandler"> 
+		<property name="defaultFailureUrl" value="/login?error=true" /> <property 
+		name="usernamePasswordAuthenticationFilter" ref="usernamePasswordAuthenticationFilter" 
+		/> </bean> -->
+
+	<!-- <bean id="accessDeniedHandler" class="org.springframework.security.web.access.AccessDeniedHandlerImpl"> 
+		<property name="errorPage" value="/dashboard" /> </bean> <security:authentication-manager 
+		alias="authenticationManager"> <security:authentication-provider user-service-ref="userLoginService"> 
+		</security:authentication-provider> </security:authentication-manager> -->
+
+</beans:beans>
